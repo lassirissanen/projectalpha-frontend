@@ -1,11 +1,15 @@
 import './App.css';
+import ChatView from './chat/ChatView';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Bot app goes brrrrr!</h1>
-      </header>
+    <div class="flex justify-center">
+      <div class="w-screen md:w-1/2 lg:w-1/3" id="chat">
+        <ChatView />
+      </div>
+      <div class="" id="stats">
+        statistics
+      </div>
     </div>
   );
 }
