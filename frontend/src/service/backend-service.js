@@ -1,11 +1,10 @@
-const baseUrl = 'http://localhost:5000';
+const baseUrl = 'http://127.0.0.1:5000';
 
 async function get(path, message) {
     const url=`${baseUrl}${path}`;
     const data = {
         "message": message
     };
-    console.log(data);
     try {
         const response = await fetch(url, {
             method: "POST",
