@@ -4,12 +4,12 @@ export const Message = ({message}) => {
 
 	function isMessageFromUser() {
 
-        console.log(message)
-        console.log(message.user)
+        //console.log(message)
+        //console.log(message.user)
         return message.user === "krister";
     }
 
-    console.log(isMessageFromUser())
+    //console.log(isMessageFromUser())
 
 	return (
 		<div class={`${isMessageFromUser() ? "place-self-end" : "place-self-start"} space-y-2`}> 

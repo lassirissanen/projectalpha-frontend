@@ -5,7 +5,6 @@ async function get(path, message) {
     const data = {
         "message": message
     };
-    console.log(data);
     try {
         const response = await fetch(url, {
             method: "POST",
