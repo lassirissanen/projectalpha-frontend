@@ -11,7 +11,7 @@ export const MessageList = () => {
   //       {user: "krister", message:"absolute pleasure"},
   //       {user: "krister", message: "block w-full rounded-md bg-light-blue px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"},
   // ] 
-  const [messages, setMessages] = useState([{user: "lassi", message:"hello"}]);
+  const [messages, setMessages] = useState([{user: "lassi", message:"Moi, Sopiiko sinulle hammastarkastus ensi maanantaina?"}]);
   const [inputStr, setInputStr] = useState("");
   let state = {
     message: "" 

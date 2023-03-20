@@ -8,7 +8,6 @@ function ChatView() {
                 <h1 class="text-3xl">chat view</h1>
             </header>
             <MessageList />
-            <SendMessage />
         </div>
       );
 }
