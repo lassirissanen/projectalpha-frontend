@@ -1,6 +1,7 @@
 import { MessageList } from "./MessageList";
 import { SendMessage } from "./SendMessage";
 import { useState } from "react";
+import './MessageList.css';
 
 function ChatView() {
     const endpoints = [
@@ -25,16 +26,16 @@ function ChatView() {
     }
 
     return (
-        <div class="flex flex-col justify-center items-center content-start w-full">
+        <div class="flex flex-col justify-center items-center content-start w-full pb-16">
             <header class="p-16">
                 <h1 class="text-3xl">chat view</h1>
                 <select onInput={handleSelectEndpoint} id="endpoint-select" name="endpoints">
                     {endpoints.map(e => <option value={e.value} key={e.value}>{e.name}</option>)}
                 </select>
             </header>
-            <MessageList endpoint={endpoint}/>
+            <MessageList endpoint={endpoint} />
         </div>
-      );
+    );
 }
 
 export default ChatView;
