@@ -42,9 +42,22 @@ export const MessageList = (props) => {
         break;
       case "classify-2":
         response = await getCombinedClassification(inputStr)
+        setVerdict(response.verdict);
+        console.log("asetettu verdict: ",verdict);
+        setClasstype(response.class);
+        console.log("asetettu classtype: ",classtype);
+        setProbability(response.classification_probability);
+        console.log("asetettu probability: ",probability);
+        setProbabilities(response.probabilities);
+        console.log("type: ", typeof probabilities)
+        console.log("asetettu probabilities: ",probabilities);
         break;
       case "classify-3":
         response = await getOpenAIClassification(inputStr)
+        setVerdict(response.verdict);
+        setClasstype(response.class);
+        setProbability(response.classification_probability);
+        setProbabilities(response.probabilities);
         break;
     };
     setInputStr("");

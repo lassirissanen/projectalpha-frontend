@@ -1,12 +1,26 @@
-export const Statistics = ({verdict, classtype, probability, probabilities}) => {	
-	return (
-		<div> 
+export const Statistics = ({ verdict, classtype, probability, probabilities }) => {
+    if (verdict === "-") {
+        return (
+            <div>
+                <div class="pt-5">
+                    class: {classtype}<br></br>
+                    probability: {probability} %<br></br>
+                    probabilities [accept, decline, suggestion]: {probabilities}<br></br>
+                    verdict: {verdict}<br></br>
+                    <b>openai does not support statistics</b>
+                </div>
+            </div>
+        )
+    }
+    return (
+        <div>
             <div class="pt-5">
                 class: {classtype}<br></br>
                 probability: {probability} %<br></br>
                 probabilities [accept, decline, suggestion]: {probabilities}<br></br>
-                verdict: {verdict}
-	        </div>
+                verdict: {verdict}<br></br>
+            </div>
         </div>
-	)
+    )
+
 }
