@@ -26,10 +26,10 @@ function ChatView() {
     }
 
     return (
-        <div class="flex flex-col justify-center items-center content-start w-full pb-16">
-            <header class="p-16">
+        <div class="chat-view flex flex-col justify-start items-center w-full h-screen">
+            <header class="p-16 h-1 mb-8">
                 <h1 class="text-3xl">chat view</h1>
-                <select onInput={handleSelectEndpoint} id="endpoint-select" name="endpoints">
+                <select onInput={handleSelectEndpoint} id="endpoint-select" name="endpoints" class="mt-1">
                     {endpoints.map(e => <option value={e.value} key={e.value}>{e.name}</option>)}
                 </select>
             </header>
