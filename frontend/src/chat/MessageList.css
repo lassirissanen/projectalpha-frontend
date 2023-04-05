@@ -1,7 +1,6 @@
 .messageView {
-    overflow: auto;
-    height: 700px
+    overflow-y: auto;
+    /*height: 300px*/
+    height: calc(100vh - 400px);
+    flex-grow: 1;
   }
-/*
-    height: calc(100vh - 200px);
-*/

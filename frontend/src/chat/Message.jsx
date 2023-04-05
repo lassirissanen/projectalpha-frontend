@@ -17,7 +17,6 @@ export const Message = ({message}) => {
 /**
  * 
  * 	const { user } = null; // the currently logged in user
-
 	function isMessageFromUser() {
         return user?.id === message.user_id;
     }

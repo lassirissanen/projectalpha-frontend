@@ -25,8 +25,14 @@ export const MessageList = (props) => {
   };
   // Retrieve messages from database
   const getClassification = async () => {
-    setMessages(prevMessages => [...prevMessages, { user: "krister", message: inputStr }]);
+    // An empty message cannot be sent
+    if (inputStr.trim() === '') {
+      window.alert("Viestin lähettäminen ei ole mahdollista, sillä viesti on tyhjä. Ole hyvä ja kirjoita viesti ennen sen lähettämistä.");
+    }
+    else {
+      setMessages(prevMessages => [...prevMessages, { user: "krister", message: inputStr }]);
     let response = null;
+    // eslint-disable-next-line default-case
     switch (props.endpoint) {
       case "classify-1":
         response = await getTensorflowClassification(inputStr)
@@ -62,6 +68,7 @@ export const MessageList = (props) => {
     };
     setInputStr("");
     setMessages(prevMessages => [...prevMessages, { user: "lassi", message: response["class"] }]);
+    }
   }
   const handleInput = event => {
     setInputStr(event.target.value);
@@ -71,7 +78,7 @@ export const MessageList = (props) => {
   return (
     <div>
       <div className="messageView">
-        <ul class="space-y-12 grid grid-cols-1 w-full">
+        <ul class="space-y-4 grid grid-cols-1 w-full mt-0">
           {messages && messages?.map((message) => <Message key={message.user + message.message} message={message} />)}
         </ul>
       </div>
@@ -88,4 +95,4 @@ export const MessageList = (props) => {
       <Statistics verdict={verdict} classtype={classtype} probability={probability} probabilities={probabilities} />
     </div>
   )
-}
+};
