@@ -13,8 +13,12 @@ export const MessageList = (props) => {
   //       {user: "krister", message: "block w-full rounded-md bg-light-blue px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"},
   // ] 
 
+  let today = new Date();
+  let nextMonday = new Date(today.getFullYear(), today.getMonth(), today.getDate() + (1 + 7 - today.getDay()) % 7);
+  let nextMondayFormatted = nextMonday.toLocaleDateString('fi-FI', { year: "numeric", month: "2-digit", day: "2-digit"});
+  const initialMessage = `Hei! Olemme varanneet sinulle alustavan hammastarkastus ajan ${nextMondayFormatted} klo 12:00. Vastaa 'V' varmistaaksesi ajan`;
 
-  const [messages, setMessages] = useState([{ user: "lassi", message: "Moi, Sopiiko sinulle hammastarkastus ensi maanantaina?" }]);
+  const [messages, setMessages] = useState([{ user: "lassi", message: initialMessage }]);
   const [inputStr, setInputStr] = useState("");
   const [verdict, setVerdict] = useState("");
   const [classtype, setClasstype] = useState("");
@@ -35,7 +39,7 @@ export const MessageList = (props) => {
     // eslint-disable-next-line default-case
     switch (props.endpoint) {
       case "classify-1":
-        response = await getTensorflowClassification(inputStr)
+        response = await getTensorflowClassification(inputStr, initialMessage)
         setVerdict(response.verdict);
         console.log("asetettu verdict: ",verdict);
         setClasstype(response.class);
@@ -47,7 +51,7 @@ export const MessageList = (props) => {
         console.log("asetettu probabilities: ",probabilities);
         break;
       case "classify-2":
-        response = await getCombinedClassification(inputStr)
+        response = await getCombinedClassification(inputStr, initialMessage)
         setVerdict(response.verdict);
         console.log("asetettu verdict: ",verdict);
         setClasstype(response.class);
@@ -59,7 +63,7 @@ export const MessageList = (props) => {
         console.log("asetettu probabilities: ",probabilities);
         break;
       case "classify-3":
-        response = await getOpenAIClassification(inputStr)
+        response = await getOpenAIClassification(inputStr, initialMessage)
         setVerdict(response.verdict);
         setClasstype(response.class);
         setProbability(response.classification_probability);
@@ -67,7 +71,9 @@ export const MessageList = (props) => {
         break;
     };
     setInputStr("");
-    setMessages(prevMessages => [...prevMessages, { user: "lassi", message: response["class"] }]);
+    const time = response['time'];
+    let suggestedTime = time ? `${time.date}, ${time.from} - ${time.to}`: '';
+    setMessages(prevMessages => [...prevMessages, { user: "lassi", message: response["class"] + ' ' + suggestedTime }]);
     }
   }
   const handleInput = event => {
