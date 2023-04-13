@@ -72,7 +72,7 @@ export const MessageList = (props) => {
     };
     setInputStr("");
     const time = response['time'];
-    let suggestedTime = time ? `${time.date}, ${time.from} - ${time.to}`: '';
+    let suggestedTime = time ? `${time.from} - ${time.to}`: '';
     setMessages(prevMessages => [...prevMessages, { user: "lassi", message: response["class"] + ' ' + suggestedTime }]);
     }
   }
