@@ -22,5 +22,4 @@ export const Statistics = ({ verdict, classtype, probability, probabilities }) =
             </div>
         </div>
     )
-
 };
