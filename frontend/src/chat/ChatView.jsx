@@ -1,5 +1,4 @@
 import { MessageList } from "./MessageList";
-import { SendMessage } from "./SendMessage";
 import { useState } from "react";
 import './MessageList.css';
 
@@ -17,13 +16,14 @@ function ChatView() {
             value: "classify-3",
             name: "OpenAI"
         },
-    ]
-    const [endpoint, setEndpoint] = useState("classify-1")
+    ];
+
+    const [endpoint, setEndpoint] = useState("classify-1");
 
     const handleSelectEndpoint = (event) => {
         setEndpoint(event.target.value);
         console.log(endpoint);
-    }
+    };
 
     return (
         <div class="chat-view flex flex-col justify-start items-center w-full h-screen">
@@ -36,6 +36,6 @@ function ChatView() {
             <MessageList endpoint={endpoint} />
         </div>
     );
-}
+};
 
 export default ChatView;
